@@ -1,0 +1,232 @@
+<html>
+<head>
+<style type="text/css">
+h2 {font-size:200%;}
+p {font-size:100%;}
+body {font-size:smaller;padding-left:70px;padding-right:20px;}
+table {padding: 3px;font-size:smaller;border:1;black;border-collapse:collapse;}
+td {height:30px;padding:4px}
+td.l {text-align:left}
+td.c {text-align:center}
+td.r {text-align:right}
+li { font-size:smaller;}
+#info  { text-size:80%;padding-left:30px;}
+#info td{height:12px;padding:1px}
+</style>
+</head>
+
+<body >
+
+<center>
+<div>
+{{deal.buyer.company}}
+</div>
+<h2>
+<a>
+采购合同
+</a>
+<h2>
+</center>
+
+<div style="text-align:right">
+No.{{ deal.num }}
+</div>
+<p>
+采购方: {{deal.buyer.company.name}}
+</p>
+<p>
+供货方: {{deal.owner.company.name}}
+</p>
+<p>
+双方就采购货物及相关审宜，经充分好协商，达成一致，特签订本合同，以共同信守。
+</p>
+<p>采购明细</p>
+<table  border="1" cellspacing="0" bordercolor="#000000" width = "100%" style="border-collapse:collapse;">
+
+<tr>
+<td width='20%' class="c">
+名称
+</td>
+
+<td width = '45%' class="c">
+规格说明
+</td>
+<td width = '10%' class="c">
+单价/元
+</td>
+<td width = '10%'  class="c">
+数量
+</td>
+<td width ='10%' class="c">
+小计
+</td>
+</tr>
+
+
+<tr>
+<td class='l'>
+{{deal.p1name}}
+</td>
+
+<td class='l'>
+{{deal.p1spec}}
+</td>
+<td class='r'>
+{{deal.p1price| floatformat:2}}
+</td>
+<td class='r'>
+{{deal.p1count| floatformat}}
+</td>
+<td style="text-align:right">
+{{deal.p1| floatformat}}
+</td>
+</tr>
+
+<tr>
+<td class='l'>
+{{deal.p2name}}
+</td>
+
+<td class='l'>
+{% if deal.p2name != "" %}
+{{deal.p2spec}}
+{% endif %}
+</td>
+<td class='r'>
+{% if deal.p2name != "" %}
+{{deal.p2price| floatformat:2}}
+{% endif %}
+</td>
+<td class='r'>
+{% if deal.p2name != "" %}
+{{deal.p2count| floatformat}}
+{% endif %}
+</td>
+<td class='r'>
+{% if deal.p2name != "" %}
+{{deal.p2| floatformat}}
+{% endif %}
+</td>
+</tr>
+
+<tr>
+<td class='l'>
+{{deal.p3name | default:' -'}}
+</td>
+<td class='l'>
+{% if deal.p3name != "" %}
+{{deal.p3spec}}
+{% endif %}
+</td>
+<td class='r'>
+{% if deal.p3name != "" %}
+{{deal.p3price| floatformat}}
+{% endif %}
+</td>
+<td class='r'>
+{% if deal.p3name != "" %}
+{{deal.p3count| floatformat}}
+{% endif %}
+</td>
+<td class='r'>
+{% if deal.p3name != "" %}
+{{deal.p3| floatformat}}
+{% endif %}
+</td>
+</tr>
+
+<tr>
+<td colspan=4 class='l'>
+合计：{{daxie}}
+</td>
+<td class='r' id='total'>
+{{deal.total | floatformat}}
+</td>
+</table>
+
+<p>补充说明</p>
+
+<ol>
+
+<li>合同签订日期：{{deal.signed_date}}</li>
+<li>期望交货日期：{{deal.delivery_date}}</li>
+
+{% if deal.tax == 0 %}
+<li>上述为非含税价格</li>
+{% else  %}
+<li>上述价格含税 {{deal.tax}}%,  提供相应发票 </li>
+{% endif %}
+
+{% if deal.delivery_add == '' %}
+<li>送货地址为：{{deal.buyer.company.address}}</li>
+{% else %}
+<li>送货地址为：{{deal.delivery_addd}}</li>
+{% endif %}
+<li>本合同一式两份，双方各一份，传真有效</li>
+</ol>
+
+<p>附采购方开票资料</p>
+<div id = 'info'>
+<table>
+<tr>
+<td>名称：</td>
+<td>
+{{deal.buyer.company.name}}
+</td>
+</tr>
+<tr>
+<td>
+税号:
+</td>
+<td> {{deal.buyer.company.tax_number}}
+</td>
+</tr>
+<tr>
+<td>注册地址:
+</td>
+<td>
+ {{deal.buyer.company.registered_address}}
+
+</td>
+</tr>
+
+<tr>
+<td>
+银行信息:
+</td>
+<td>
+ {{deal.buyer.company.bank_info}}
+</td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<table width='100%'>
+<tr>
+<td>
+<p>采 购 方</p>
+名 &nbsp;&nbsp; 称：{{deal.buyer.company.name}}
+<br>
+地 &nbsp;&nbsp; 址：{{deal.buyer.company.address}}
+<br>
+联系人：{{deal.buyer}}
+<br>
+电 &nbsp;&nbsp; 话：{{deal.buyer.phone}}
+</td>
+<td>
+<p>供 货 方</p>
+名 &nbsp;&nbsp; 称：{{deal.owner.company.name}}
+<br>
+地 &nbsp;&nbsp; 址：{{deal.owner.company.address}}
+<br>
+联系人：{{deal.owner}}
+<br>
+电 &nbsp;&nbsp; 话：{{deal.owner.phone}}
+</td>
+</tr>
+</table>
+</body>
+
+</html>
+
