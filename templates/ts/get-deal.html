@@ -160,11 +160,11 @@ No.{{ deal.num }}
 {% if deal.delivery_add == '' %}
 <li>送货地址为：{{deal.buyer.company.address}}</li>
 {% else %}
-<li>送货地址为：{{deal.delivery_addd}}</li>
+<li>送货地址为：{{deal.delivery_add}}</li>
 {% endif %}
 <li>本合同一式两份，双方各一份，传真有效</li>
 </ol>
-
+{% if deal.show_tax %}
 <p>附采购方开票资料</p>
 <div id = 'info'>
 <table>
@@ -200,6 +200,7 @@ No.{{ deal.num }}
 </tr>
 </table>
 </div>
+{% endif %}
 <br>
 <br>
 <table width='100%'>

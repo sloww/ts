@@ -35,7 +35,7 @@ class Address(models.Model):
 
     class Meta():
         verbose_name = '地址'
-        verbose_name_plural = '地址'
+        verbose_name_plural = '1.地址'
 
     def __str__(self):
         return('%s%s %s %s' % (self.province,self.city,self.district,self.detail))
@@ -52,7 +52,6 @@ class Company(models.Model):
         Address,
         on_delete = models.CASCADE,
         )
-
     name = models.CharField(
         max_length = 100,
         verbose_name = "单位名称",
@@ -78,8 +77,8 @@ class Company(models.Model):
         )
 
     class Meta():
-        verbose_name = '单位'
-        verbose_name_plural = '单位'
+        verbose_name = '公司'
+        verbose_name_plural = '2.公司'
 
     def __str__(self):
         return(self.name)
@@ -110,7 +109,7 @@ class Contact(models.Model):
 
     class Meta():
         verbose_name = '联系人'
-        verbose_name_plural = '联系人'
+        verbose_name_plural = '3.联系人'
          
     def __str__(self):
         return(self.name)
@@ -144,6 +143,7 @@ class Deal(models.Model):
     num = models.CharField(
         max_length = 100,
         verbose_name = "编号",
+        unique = True,
         )
 
     owner = models.ForeignKey(
@@ -269,11 +269,17 @@ class Deal(models.Model):
         blank = True,
         verbose_name =  '快递地址',
         max_length = 200,
-        ) 
+        )
 
+    url = models.UrlField(
+        default='https://tslink.cc/ts/',
+        verbose_name = "URL地址",
+        )
+
+ 
     class Meta():
         verbose_name = '单据'
-        verbose_name_plural = '单据'
+        verbose_name_plural = '4.单据'
 
     def __str__(self):
         return(self.num)
@@ -295,3 +301,7 @@ class Deal(models.Model):
 
     def buyer_company(self):
         return self.buyer.company.name 
+
+     def save(self, *args, **kwargs):
+        self.url = settings.TSURLPRE+ts/+self.num+'/'
+        super(Deal, self).save(*args, **kwargs) 
