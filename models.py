@@ -2,9 +2,12 @@ from django.db import models
 from django.utils import timezone
 import uuid
 from django.conf import settings
+from datetime import datetime
+from django.utils.html import format_html
+ 
 
 
-# Create your models here.
+
 class Address(models.Model):
 
     id = models.UUIDField(
@@ -267,7 +270,6 @@ class Deal(models.Model):
 
     delivery_date =models.DateField(
         verbose_name = '期望交货期',
-        default = timezone.now(),
         blank = True,
         )
 
@@ -279,7 +281,6 @@ class Deal(models.Model):
         )
 
     url = models.URLField(
-        default=settings.TSURLPRE,
         verbose_name = "URL地址",
         )
 
@@ -287,6 +288,7 @@ class Deal(models.Model):
     class Meta():
         verbose_name = '单据'
         verbose_name_plural = '4.单据'
+        ordering = ['-num']
 
     def __str__(self):
         return(self.num)
@@ -308,7 +310,25 @@ class Deal(models.Model):
 
     def buyer_company(self):
         return self.buyer.company.name 
+    
+    def format_url(self):
+        return  format_html(
+            '<a href="{}">{}</a>',
+            self.url,
+            self.url,
+        )
 
     def save(self, *args, **kwargs):
-        self.url = settings.TSURLPRE+self.num+'/'
+        dt = self.signed_date
+        ymd = '%s%s%s' % (dt.year,dt.month, dt.day)
+        for n in range(1,999):
+            num = '%s%03d' % (ymd,n)
+            if Deal.objects.filter(num=num).exists() == False:
+                self.num  = num 
+                self.url = settings.TSURLPRE+self.num+'/'
+                break
+            else:
+                if Deal.objects.filter(num=num).filter(id = self.id).exists():
+                    break
         super(Deal, self).save(*args, **kwargs) 
+                
