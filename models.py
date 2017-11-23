@@ -38,7 +38,7 @@ class Address(models.Model):
         verbose_name_plural = '地址'
 
     def __str__(self):
-        return('%s %s %s %s' % (self.province,self.city,self.district,self.detail))
+        return('%s%s %s %s' % (self.province,self.city,self.district,self.detail))
 
 class Company(models.Model):
 
@@ -289,4 +289,9 @@ class Deal(models.Model):
 
     def p3(self):
         return self.p3price*self.p3count
-        
+
+    def owner_company(self):
+        return self.owner.company.name 
+
+    def buyer_company(self):
+        return self.buyer.company.name 
