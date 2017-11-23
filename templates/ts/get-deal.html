@@ -19,7 +19,12 @@ li { font-size:smaller;}
 
 <center>
 <div>
+{% if deal.is_sale %}
+{{deal.owner.company}}
+{% else %}
 {{deal.buyer.company}}
+{% endif %}
+
 </div>
 <h2>
 <a>
