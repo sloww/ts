@@ -271,7 +271,7 @@ class Deal(models.Model):
         max_length = 200,
         )
 
-    url = models.UrlField(
+    url = models.URLField(
         default='https://',
         verbose_name = "URL地址",
         )
@@ -302,6 +302,6 @@ class Deal(models.Model):
     def buyer_company(self):
         return self.buyer.company.name 
 
-     def save(self, *args, **kwargs):
+    def save(self, *args, **kwargs):
         self.url = settings.TSURLPRE+ts/+self.num+'/'
         super(Deal, self).save(*args, **kwargs) 
