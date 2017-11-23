@@ -305,5 +305,5 @@ class Deal(models.Model):
         return self.buyer.company.name 
 
     def save(self, *args, **kwargs):
-        self.url = settings.TSURLPRE+ts/+self.num+'/'
+        self.url = settings.TSURLPRE+self.num+'/'
         super(Deal, self).save(*args, **kwargs) 
