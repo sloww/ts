@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 import uuid
+from django.conf import settings
+
 
 # Create your models here.
 class Address(models.Model):
@@ -272,7 +274,7 @@ class Deal(models.Model):
         )
 
     url = models.URLField(
-        default='https://',
+        default=settings.TSURLPRE,
         verbose_name = "URL地址",
         )
 
