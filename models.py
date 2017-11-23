@@ -286,8 +286,8 @@ class Deal(models.Model):
 
  
     class Meta():
-        verbose_name = '单据'
-        verbose_name_plural = '4.单据'
+        verbose_name = '合同'
+        verbose_name_plural = '4.合同'
         ordering = ['-num']
 
     def __str__(self):

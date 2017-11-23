@@ -93,7 +93,7 @@ No.{{ deal.num }}
 
 <tr>
 <td class='l'>
-{{deal.p2name}}
+{{deal.p2name | default:' -'}}
 </td>
 
 <td class='l'>
@@ -145,6 +145,21 @@ No.{{ deal.num }}
 </tr>
 
 <tr>
+<td class='l'>
+-
+</td>
+<td class='l'>
+</td>
+<td class='r'>
+</td>
+<td class='r'>
+</td>
+<td class='r'>
+</td>
+</tr>
+
+
+<tr>
 <td colspan=4 class='l'>
 合计：{{daxie}}
 </td>
@@ -191,7 +206,7 @@ No.{{ deal.num }}
 </td>
 </tr>
 <tr>
-<td>注册地址:
+<td>地址:
 </td>
 <td>
  {{deal.buyer.company.registered_address}}
@@ -201,7 +216,7 @@ No.{{ deal.num }}
 
 <tr>
 <td>
-银行信息:
+银行:
 </td>
 <td>
  {{deal.buyer.company.bank_info}}

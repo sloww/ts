@@ -18,7 +18,7 @@ from searchadmin.admin import SelectModelAdmin
 class DealMasterAdmin(SelectModelAdmin):
     search_fields = ('num','p1name','p1sepc',)
     list_display = ('num','buyer_company','owner_company', 'total','format_url', )
-    readonly_fields = ('format_url','num',)
+    readonly_fields = ('url','format_url','num',)
 admin_site.register(Company)
 admin_site.register(Address)
 admin_site.register(Deal, DealMasterAdmin)
