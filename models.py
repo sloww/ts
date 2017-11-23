@@ -294,7 +294,8 @@ class Deal(models.Model):
         return(self.num)
 
     def total(self):
-        return self.p1price*self.p1count + self.p2price*self.p2count + self.p3price*self.p3count
+        r = self.p1price*self.p1count + self.p2price*self.p2count + self.p3price*self.p3count
+        return "{:.2f}".format(r)
 
     def p1(self):
         return self.p1price*self.p1count
