@@ -272,7 +272,7 @@ class Deal(models.Model):
         )
 
     url = models.UrlField(
-        default='https://tslink.cc/ts/',
+        default='https://',
         verbose_name = "URL地址",
         )
 
