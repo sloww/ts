@@ -248,6 +248,70 @@ class Deal(models.Model):
         default = True,
         verbose_name = '是否显示发票信息',
         )
+
+    is_sale = models.BooleanField(
+        default = True,
+        verbose_name = '是否是销售合同',
+        )
+    
+    tax = models.IntegerField(
+        default =0,
+        verbose_name = '税率',
+        )
+
+    signed_date =models.DateField(
+        verbose_name = '签订日期',
+        default = timezone.now(),
+        blank = True,
+        )
+
+    delivery_date =models.DateField(
+        verbose_name = '期望交货期',
+        default = timezone.now(),
+        blank = True,
+        )
+
+
+    delivery_add = models.CharField(
+        blank = True,
+        verbose_name =  '快递地址',
+        max_length = 200,
+        )
+
+    url = models.URLField(
+        default=settings.TSURLPRE,
+        verbose_name = "URL地址",
+        )
+
+ 
+    class Meta():
+        verbose_name = '单据'
+        verbose_name_plural = '4.单据'
+
+    def __str__(self):
+        return(self.num)
+
+    def total(self):
+        return self.p1price*self.p1count + self.p2price*self.p2count + self.p3price*self.p3count
+
+    def p1(self):
+        return self.p1price*self.p1count
+
+    def p2(self):
+        return self.p2price*self.p2count
+
+    def p3(self):
+        return self.p3price*self.p3count
+
+    def owner_company(self):
+        return self.owner.company.name 
+
+    def buyer_company(self):
+        return self.buyer.company.name 
+
+    def save(self, *args, **kwargs):
+        self.url = settings.TSURLPRE+self.num+'/'
+        super(Deal, self).save(*args, **kwargs) 
     
     tax = models.IntegerField(
         default =0,

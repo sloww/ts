@@ -23,7 +23,11 @@ li { font-size:smaller;}
 </div>
 <h2>
 <a>
+{% if deal.is_sale %}
+销售合同
+{% else %}
 采购合同
+{% endif %}
 </a>
 <h2>
 </center>
