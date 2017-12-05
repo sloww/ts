@@ -321,7 +321,7 @@ class Deal(models.Model):
 
     def save(self, *args, **kwargs):
         dt = self.signed_date
-        ymd = dt.strftime('%y%m%d')
+        ymd = dt.strftime('%Y%m%d')
         for n in range(1,999):
             num = '%s%03d' % (ymd,n)
             if Deal.objects.filter(num=num).exists() == False:

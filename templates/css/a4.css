@@ -20,9 +20,9 @@ body {
 }
 .subpage {
     padding: 1cm;
-    border: 5px red solid;
+    border: 0px white solid;
     height: 256mm;
-    outline: 2cm #FFEAEA solid;
+    outline: 2cm white solid;
 }
 
 @page {
