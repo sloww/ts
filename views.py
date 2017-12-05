@@ -83,6 +83,8 @@ class cnumber:
                     chk=chk+self.gdict[int(ckj[0])]+'角'+self.gdict[int(ckj[1])]+'分'
                 else:
                     chk=chk+self.gdict[int(ckj[0])]+'角整'
+        if str(data) == '0':
+            chk = '零圆整'
         return chk
 
 @staff_member_required
