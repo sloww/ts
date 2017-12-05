@@ -1,21 +1,73 @@
 <html>
 <head>
 <style type="text/css">
-h2 {font-size:200%;}
-p {font-size:100%;}
-body {font-size:smaller;padding-left:70px;padding-right:20px;}
+<!--
+h2 {font-size:150%;}
+p {font-size:smaller}
+body {font-size:smaller;padding-left:20px;padding-right:20px;}
+-->
 table {padding: 3px;font-size:smaller;border:1;black;border-collapse:collapse;}
-td {height:30px;padding:4px}
+td {height:20px;padding:4px}
 td.l {text-align:left}
 td.c {text-align:center}
 td.r {text-align:right}
 li { font-size:smaller;}
+
 #info  { text-size:80%;padding-left:30px;}
 #info td{height:12px;padding:1px}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #FAFAFA;
+    font: 12pt "Tahoma";
+}
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.page {
+    width: 21cm;
+    min-height: 29.7cm;
+    padding: 2cm;
+    margin: 1cm auto;
+    border: 1px #D3D3D3 solid;
+    border-radius: 5px;
+    background: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+.subpage {
+    padding: 1cm;
+    border: 5px red solid;
+    height: 256mm;
+    outline: 2cm #FFEAEA solid;
+}
+
+@page {
+    size: A4;
+    margin: 0;
+}
+@media print {
+    .page {
+        margin: 0;
+        border: initial;
+        border-radius: initial;
+        width: initial;
+        min-height: initial;
+        box-shadow: initial;
+        background: initial;
+        page-break-after: always;
+    }
+}
 </style>
 </head>
 
 <body >
+
+<div class="book">
+    <div class="page">
+<div class="subpage">
+
 
 <center>
 <div>
@@ -27,18 +79,20 @@ li { font-size:smaller;}
 
 </div>
 <h2>
-<a>
+<p>
 {% if deal.is_sale %}
 销售合同
 {% else %}
 采购合同
 {% endif %}
-</a>
+</p>
 <h2>
 </center>
 
 <div style="text-align:right">
+<p>
 No.{{ deal.num }}
+</p>
 </div>
 <p>
 采购方: {{deal.buyer.company.name}}
@@ -251,6 +305,12 @@ No.{{ deal.num }}
 </td>
 </tr>
 </table>
+
+
+       </div>    
+    </div>
+</div>
+
 </body>
 
 </html>
