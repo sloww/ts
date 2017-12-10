@@ -150,6 +150,11 @@ class Deal(models.Model):
         verbose_name = '是否支付',
         )
 
+    has_fapiao = models.BooleanField(
+        default = False,
+        verbose_name = '是否开票',
+        )
+
  
     has_delivery = models.BooleanField(
         default = False,
