@@ -66,8 +66,6 @@ body {
 
 <div class="book">
     <div class="page">
-<div class="subpage">
-
 
 <center>
 <div>
@@ -86,7 +84,7 @@ body {
 采购合同
 {% endif %}
 </p>
-<h2>
+</h2>
 </center>
 
 <div style="text-align:right">
@@ -292,6 +290,9 @@ No.{{ deal.num }}
 联系人：{{deal.buyer}}
 <br>
 电 &nbsp;&nbsp; 话：{{deal.buyer.phone}}
+<br>
+<br>
+采购方代表（签字）:______________<br>
 </td>
 <td>
 <p>供 货 方</p>
@@ -302,13 +303,12 @@ No.{{ deal.num }}
 联系人：{{deal.owner}}
 <br>
 电 &nbsp;&nbsp; 话：{{deal.owner.phone}}
+<br>
+<br>
+供货方代表（签字）:______________<br>
 </td>
 </tr>
 </table>
-
-
-       </div>    
-    </div>
 </div>
 
 </body>

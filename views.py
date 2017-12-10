@@ -94,10 +94,10 @@ def get_deal(request, num):
         deal.total_set = deal.total()
         cn = cnumber() 
         print(deal.total_set)
-        daxie = cn.cwchange(deal.total_set).encode('utf-8') 
+        #daxie = cn.cwchange(deal.total_set).encode('utf-8') 
+        daxie = cn.cwchange(deal.total_set) 
         print(daxie)
         context = {'deal':deal,'daxie':daxie}
-        print(context)
         return render(request, 'ts/get-deal.html', context)
     except:
         return HttpResponse("not exist")

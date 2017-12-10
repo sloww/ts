@@ -145,6 +145,17 @@ class Deal(models.Model):
         editable = False,
         )
 
+    has_pay = models.BooleanField(
+        default = False,
+        verbose_name = '是否支付',
+        )
+
+ 
+    has_delivery = models.BooleanField(
+        default = False,
+        verbose_name = '是否送达',
+        )
+
     num = models.CharField(
         max_length = 100,
         verbose_name = "编号",
