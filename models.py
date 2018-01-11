@@ -326,7 +326,7 @@ class Deal(models.Model):
         return self.owner.company.name 
 
     def buyer_company(self):
-        return self.buyer.company.name 
+        return self.buyer.company.name[:4] 
     
     def format_url(self):
         return  format_html(
