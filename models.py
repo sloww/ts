@@ -332,7 +332,7 @@ class Deal(models.Model):
         return  format_html(
             '<a href="{}">{}</a>',
             self.url,
-            self.url,
+            '合同',
         )
 
     def save(self, *args, **kwargs):
