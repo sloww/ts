@@ -147,18 +147,18 @@ class Deal(models.Model):
 
     has_pay = models.BooleanField(
         default = False,
-        verbose_name = '是否支付',
+        verbose_name = '支付',
         )
 
     has_fapiao = models.BooleanField(
         default = False,
-        verbose_name = '是否开票',
+        verbose_name = '开票',
         )
 
  
     has_delivery = models.BooleanField(
         default = False,
-        verbose_name = '是否送达',
+        verbose_name = '送达',
         )
 
     num = models.CharField(
@@ -313,6 +313,8 @@ class Deal(models.Model):
         r = self.p1price*self.p1count + self.p2price*self.p2count + self.p3price*self.p3count
         return "{:.2f}".format(r)
 
+    total.short_description = '合计'
+
     def p1(self):
         return self.p1price*self.p1count
 
@@ -323,17 +325,23 @@ class Deal(models.Model):
         return self.p3price*self.p3count
 
     def owner_company(self):
-        return self.owner.company.name 
+        return self.owner.company.name[:4]
+
+    owner_company.short_description = '售方'
 
     def buyer_company(self):
         return self.buyer.company.name[:4] 
-    
+
+    buyer_company.short_description = '购方'
+
     def format_url(self):
         return  format_html(
-            '<a href="{}">{}</a>',
+            '<a  target="_blank" href="{}">{}</a>',
             self.url,
             '合同',
         )
+
+    format_url.short_description = '合同'
 
     def save(self, *args, **kwargs):
         dt = self.signed_date
